@@ -1,0 +1,39 @@
+<RunSettings>
+	<TestRunParameters>
+		<Parameter name="SeleniumWebDriverPath" value="C:\Automation" />
+		<Parameter name="MediaFolder" value="C:\Automation\Media\" />
+		<Parameter name="LogFilePath" value="C:\Automation" />
+		<Parameter name="LogExportType" value="html" />
+		<Parameter name="Browser" value="Chrome" />
+		<Parameter name="ControlWaitTime" value="5" />
+		<Parameter name="PageLoadWaitTime" value="5" />
+		<Parameter name="StopOnError" value="true" />
+		<Parameter name="LogTemplateFilePath" value="" />
+		<Parameter name="ProjectName" value="" />
+		<Parameter name="WebSocketPort" value="6969" />
+		<Parameter name="AdminEmail" value="asdf" />
+		<Parameter name="AdminPassword" value="" />
+		<Parameter name="UserEmail" value="" />
+		<Parameter name="UserPassword" value="" />
+		<Parameter name="AltUserEmail" value="" />
+		<Parameter name="SecondAuthorization" value="" />
+		<Parameter name="ClientId" value="" />
+		<Parameter name="ClientSecret" value="" />
+		<Parameter name="RefreshToken" value="" />
+		<Parameter name="BasicAuth" value="" />
+		<Parameter name="UserAgent" value="" />
+		<Parameter name="JWT" value="" />
+		<Parameter name="Scope" value="" />
+		<Parameter name="TelnetAuthenticationToken" value="" />
+		<Parameter name="PlatformName" value="Android" />
+		<Parameter name="DeviceName" value="android10" />
+		<Parameter name="AppPath" value="asdf" />
+		<Parameter name="AutomationName" value="" />
+		<Parameter name="BundleId" value="" />
+		<Parameter name="PlatformVersion" value="" />
+		<Parameter name="ZeroTierOneIPAddress" value="" />
+		<Parameter name="AppiumServerPort" value="" />
+		<Parameter name="AppPackage" value="asdf" />
+		<Parameter name="AppActivity" value="asdf" />
+	</TestRunParameters>
+</RunSettings>
