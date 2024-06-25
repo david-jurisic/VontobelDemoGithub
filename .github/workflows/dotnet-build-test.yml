@@ -21,7 +21,7 @@ jobs:
       run: |
         cp nuget.config.template nuget.config
         sed -i 's/USERNAME_PLACEHOLDER/${{ secrets.NUGET_USERNAME }}/' nuget.config
-        sed -i 's/PASSWORD_PLACEHOLDER/${{ secrets.NUGET_PASSWORD }}/' nuget.config
+        sed -i 's/PASSWORD_PLACEHOLDER/${{ secrets.NUGET_PAT }}/' nuget.config
 
     - name: Restore dependencies
       run: dotnet restore --configfile nuget.config
