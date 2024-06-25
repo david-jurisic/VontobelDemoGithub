@@ -16,9 +16,18 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 7.0.x
+        
+    - name: Configure NuGet
+      run: |
+        cp nuget.config.template nuget.config
+        sed -i 's/USERNAME_PLACEHOLDER/${{ secrets.NUGET_USERNAME }}/' nuget.config
+        sed -i 's/PASSWORD_PLACEHOLDER/${{ secrets.NUGET_PASSWORD }}/' nuget.config
+
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore --configfile nuget.config
+      
     - name: Build
       run: dotnet build --no-restore
+      
     - name: Test
       run: dotnet test --no-build --verbosity normal
