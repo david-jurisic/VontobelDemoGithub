@@ -27,9 +27,12 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore --configfile nuget.config
 
+    - name: Ensure NUnit Test Adapter is installed
+      run: dotnet add package NUnit3TestAdapter --version 4.2.1
+
     - name: Build
       run: dotnet build --no-restore --configuration Release
-
+      
     - name: Test
       continue-on-error: true 
       run: |
@@ -37,11 +40,11 @@ jobs:
         dotnet test --no-build --configuration Release --logger "trx;LogFileName=TestResults/test_results.trx"
       
     - name: List TestResults Directory
-      if: always() 
+      if: always()  
       run: ls -la TestResults
       
     - name: Convert TRX to JUnit
-      if: always() 
+      if: always()  
       run: |
         dotnet tool install -g trx2junit
         trx2junit TestResults/test_results.trx
@@ -49,7 +52,7 @@ jobs:
         mv TestResults/test_results.junit.xml junit-reports/test_results.xml
 
     - name: Upload JUnit Test Report
-      if: always() 
+      if: always()  
       uses: actions/upload-artifact@v3
       with:
         name: junit-test-results
