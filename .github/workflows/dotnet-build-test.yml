@@ -33,20 +33,20 @@ jobs:
     - name: Test
       continue-on-error: true
       run: |
-        mkdir C:\Temp\TestResults
-        dotnet test VontobelDemo.csproj --no-build --configuration Release --logger "trx;LogFileName=C:\Temp\TestResults\test_results.trx"
+        mkdir D:\a\Temp\TestResults
+        dotnet test VontobelDemo.csproj --no-build --configuration Release --logger "trx;LogFileName=D:\a\Temp\TestResults\test_results.trx"
       
     - name: List TestResults Directory
       if: always()
-      run: dir C:\Temp\TestResults
+      run: dir D:\a\Temp\TestResults
       
     - name: Convert TRX to JUnit
       if: always()
       run: |
         dotnet tool install -g trx2junit
-        trx2junit C:\Temp\TestResults\test_results.trx
+        trx2junit D:\a\Temp\TestResults\test_results.trx
         mkdir junit-reports
-        move C:\Temp\TestResults\test_results.junit.xml junit-reports\test_results.xml
+        move D:\a\Temp\TestResults\test_results.junit.xml junit-reports\test_results.xml
 
     - name: Upload JUnit Test Report
       if: always()
