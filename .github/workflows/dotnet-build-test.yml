@@ -26,19 +26,27 @@ jobs:
 
     - name: Restore dependencies
       run: dotnet restore --configfile nuget.config
-      
+
     - name: Build
       run: dotnet build --no-restore --configuration Release
       
     - name: Test
-      continue-on-error: true 
+      continue-on-error: true  # Continue the job even if tests fail
       run: |
         mkdir -p TestResults
-        dotnet test --no-build --configuration Release --logger "nunit;LogFileName=TestResults/test_results.xml"
+        dotnet test --no-build --configuration Release --logger "trx;LogFileName=TestResults/test_results.trx"
       
-    - name: Upload Test Results
-      if: always()
+    - name: Convert TRX to JUnit
+      if: always()  # Ensure this step runs even if previous steps fail
+      run: |
+        dotnet tool install -g trx2junit
+        trx2junit TestResults/test_results.trx
+        mkdir -p junit-reports
+        mv TestResults/test_results.junit.xml junit-reports/test_results.xml
+
+    - name: Upload JUnit Test Report
+      if: always()  # Ensure this step runs even if previous steps fail
       uses: actions/upload-artifact@v3
       with:
-        name: test-results
-        path: TestResults/test_results.xml
+        name: junit-test-results
+        path: junit-reports/test_results.xml
