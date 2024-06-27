@@ -33,7 +33,7 @@ jobs:
     - name: Test
       continue-on-error: true
       run: |
-        dotnet test VontobelDemo.csproj --no-build --configuration Release --logger "trx" --results-directory TestResults
+        dotnet test --no-build --configuration Release --logger "trx" --results-directory TestResults
       
     - name: List TestResults Directory
       if: always()
