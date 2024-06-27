@@ -3,7 +3,7 @@ Feature: TC099_InitialBannerExamples
 
 Testing the functionalities of the initial banner shown on Vontobel Markets page.
 
-@TestCaseCode:TC099 @TC001 @Author:Maja_Canaki @InitialBanner
+@TestCaseCode:TC099 @TC099 @Author:Maja_Canaki @InitialBanner
 Scenario Outline: Initial Banner Examples
 	Given I navigate to the "Vontobel Markets" page
 	When the "Initial Banner" modal is displayed

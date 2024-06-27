@@ -6,15 +6,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="TestBook\BDD\API\**" />
-    <Compile Remove="TestBook\StepDefinitions\API\**" />
     <EmbeddedResource Remove="TestBook\BDD\API\**" />
-    <EmbeddedResource Remove="TestBook\StepDefinitions\API\**" />
     <None Remove="TestBook\BDD\API\**" />
-    <None Remove="TestBook\StepDefinitions\API\**" />
     <SpecFlowFeatureFiles Remove="TestBook\BDD\API\**" />
-    <SpecFlowFeatureFiles Remove="TestBook\StepDefinitions\API\**" />
     <SpecFlowObsoleteCodeBehindFiles Remove="TestBook\BDD\API\**" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="TestBook\StepDefinitions\API\**" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
@@ -34,7 +29,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TestBook\BDD\UI\" />
-    <Folder Include="TestBook\StepDefinitions\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Testbook\bdd\ui\Features\TC099_InitialBannerExamples.feature.cs">
