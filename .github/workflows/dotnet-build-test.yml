@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v4
@@ -20,9 +20,9 @@ jobs:
         
     - name: Configure NuGet
       run: |
-        cp nuget.config.template nuget.config
-        sed -i 's/USERNAME_PLACEHOLDER/${{ secrets.NUGET_USERNAME }}/' nuget.config
-        sed -i 's/PASSWORD_PLACEHOLDER/${{ secrets.NUGET_PAT }}/' nuget.config
+        copy nuget.config.template nuget.config
+        (Get-Content nuget.config -Raw) -replace 'USERNAME_PLACEHOLDER', "${{ secrets.NUGET_USERNAME }}" | Set-Content nuget.config -Force
+        (Get-Content nuget.config -Raw) -replace 'PASSWORD_PLACEHOLDER', "${{ secrets.NUGET_PAT }}" | Set-Content nuget.config -Force
 
     - name: Restore dependencies
       run: dotnet restore --configfile nuget.config
@@ -33,20 +33,20 @@ jobs:
     - name: Test
       continue-on-error: true
       run: |
-        mkdir -p /tmp/TestResults
-        dotnet test VontobelDemo.csproj --configuration Release --logger "trx;LogFileName=/tmp/TestResults/test_results.trx"
+        mkdir C:\Temp\TestResults
+        dotnet test VontobelDemo.csproj --no-build --configuration Release --logger "trx;LogFileName=C:\Temp\TestResults\test_results.trx"
       
     - name: List TestResults Directory
       if: always()
-      run: ls -la /tmp/TestResults
+      run: dir C:\Temp\TestResults
       
     - name: Convert TRX to JUnit
       if: always()
       run: |
         dotnet tool install -g trx2junit
-        trx2junit /tmp/TestResults/test_results.trx
-        mkdir -p junit-reports
-        mv /tmp/TestResults/test_results.junit.xml junit-reports/test_results.xml
+        trx2junit C:\Temp\TestResults\test_results.trx
+        mkdir junit-reports
+        move C:\Temp\TestResults\test_results.junit.xml junit-reports\test_results.xml
 
     - name: Upload JUnit Test Report
       if: always()
